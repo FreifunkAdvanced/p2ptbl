@@ -56,7 +56,8 @@ merge () {
 	oldversion=0
 	oldval=""
 	while read key version val; do
-	    if [ "$key" == "$oldkey" ]; then
+		[ -z "$version" ] && version=0
+		if [ "$key" == "$oldkey" ]; then
 		if [ "$version" -gt "$oldversion" ] 2>/dev/null; then
 		    oldversion="$version"
 		    oldval="$val"
