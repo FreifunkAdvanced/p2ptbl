@@ -2,9 +2,12 @@
 
 set -e
 
-tbldir=/tmp/p2ptbl
+interface=$(pwd | cut -f 4 -d '/')
+tbldir=/var/p2ptbl/$interface
 tbl=$tbldir/$(basename $0)
 
+# Create p2ptbl folder if not existant
+[ -d $tbldir ] || mkdir -p $tbldir
 [ -f $tbl ] || p2ptbl init $tbl
 
 gunzip > $tbl.recv
